@@ -1,24 +1,37 @@
 const Footer = () => {
   return (
-    <footer className="bg-card border-t border-border p-6 text-center mt-12">
-      <div className="container mx-auto">
-        <p className="text-sm text-muted-foreground">
-          Desarrollado con ❤️ por{' '}
+    <footer className="footer sm:footer-horizontal bg-base-200 text-base-content mt-auto items-center p-4">
+      <aside className="grid-flow-col items-center">
+        <p>
+          <span>Copyright © {new Date().getFullYear()}</span> &nbsp;
           <a
-            href="https://github.com/dualipin/"
-            target="_blank"
+            className="link"
+            href="https://dualipin.vercel.app/"
             rel="noopener noreferrer"
-            className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium transition-colors"
           >
-            dualipin
+            Martin Sanchez
           </a>
         </p>
-        <p className="text-xs text-muted-foreground mt-2">
-          Construido con React, TypeScript, Tailwind CSS y Web Crypto API &copy; {new Date().getFullYear()}
-        </p>
-      </div>
+      </aside>
+      <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+        <a
+          className="link"
+          href="https://github.com/dualipin/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Github
+        </a>
+        <a
+          className="link"
+          href="https://www.linkedin.com/in/mrtnsnry/"
+          rel="noopener noreferrer"
+        >
+          LinkedIn
+        </a>
+      </nav>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

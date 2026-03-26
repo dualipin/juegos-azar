@@ -10,9 +10,11 @@ const Header = () => {
   ];
 
   return (
-    <div className="navbar bg-base-100 shadow-sm max-w-7xl sticky top-2 mx-auto">
+    <div className="navbar bg-base-100/30 shadow-sm max-w-7xl sticky top-2 mx-auto backdrop-blur-md">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">Juegos Azar</a>
+        <Link to="/" className="btn btn-ghost text-xl">
+          Juegos Azar
+        </Link>
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
