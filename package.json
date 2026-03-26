@@ -1,7 +1,7 @@
 {
   "name": "juegos-clasicos-modern",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "author": {
     "name": "dualipin",
@@ -9,38 +9,28 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dualipin/juegos-clasicos"
+    "url": "https://github.com/dualipin/juegos-azar"
   },
-  "homepage": "https://juegos-clasicos-modern.vercel.app",
+  "homepage": "https://juegos-azar.vercel.app/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "type-check": "tsc --noEmit",
-    "clean": "rimraf dist",
-    "vercel-build": "npm run build",
-    "start": "vite preview --port $PORT"
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.13",
+    "@tailwindcss/vite": "^4.2.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-router-dom": "^7.9.2"
+    "react-router": "^7.13.2",
+    "tailwind-animations": "^1.0.1",
+    "tailwindcss": "^4.2.2"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.13",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
-    "@typescript-eslint/eslint-plugin": "^8.44.1",
-    "@typescript-eslint/parser": "^8.44.1",
     "@vitejs/plugin-react": "^5.0.3",
-    "eslint": "^9.36.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.22",
-    "postcss": "^8.5.6",
-    "rimraf": "^6.0.1",
-    "tailwindcss": "^4.1.13",
+    "daisyui": "^5.5.19",
     "typescript": "^5.9.2",
     "vite": "^7.1.7"
   }

@@ -1,13 +1,13 @@
-import { Link, useLocation } from 'react-router-dom'
-import DarkModeToggle from '../DarkModeToggle/DarkModeToggle'
+import { Link, useLocation } from "react-router";
+import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
 
 const Header = () => {
-  const location = useLocation()
+  const location = useLocation();
 
   const navItems = [
-    { path: '/', label: 'Inicio' },
-    { path: '/about', label: 'Acerca de' }
-  ]
+    { path: "/", label: "Inicio" },
+    { path: "/about", label: "Acerca de" },
+  ];
 
   return (
     <header className="bg-card border-b border-border shadow-soft sticky top-0 z-50 backdrop-blur-xs">
@@ -17,7 +17,9 @@ const Header = () => {
           {/* Logo/Title */}
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-linear-to-br from-primary-500 to-accent-500 rounded-lg flex items-center justify-center hover-glow transition-all duration-300 hover:scale-110">
-              <span className="text-white font-bold text-lg animate-wiggle">🎮</span>
+              <span className="text-white font-bold text-lg animate-wiggle">
+                🎮
+              </span>
             </div>
             <h1 className="text-xl sm:text-2xl font-bold text-gradient hover:scale-105 transition-transform duration-300">
               Juegos Clásicos
@@ -35,9 +37,10 @@ const Header = () => {
                       className={`
                         px-4 py-2 rounded-lg font-medium transition-all duration-300
                         hover:scale-105 active:scale-95 hover-glow
-                        ${location.pathname === path
-                          ? 'bg-primary-500 text-white shadow-glow animate-pulse hover:text-white'
-                          : 'text-card-foreground hover:text-white hover:bg-muted dark:hover:bg-secondary-700 hover:-translate-y-0.5'
+                        ${
+                          location.pathname === path
+                            ? "bg-primary-500 text-white shadow-glow animate-pulse hover:text-white"
+                            : "text-card-foreground hover:text-white hover:bg-muted dark:hover:bg-secondary-700 hover:-translate-y-0.5"
                         }
                       `}
                     >
@@ -67,9 +70,10 @@ const Header = () => {
                   className={`
                     px-4 py-2 rounded-lg font-medium transition-all duration-300
                     hover:scale-105 active:scale-95 hover-glow
-                    ${location.pathname === path
-                      ? 'bg-primary-500 text-white shadow-glow animate-pulse'
-                      : 'text-card-foreground hover:text-white hover:bg-muted dark:hover:bg-secondary-700 hover:-translate-y-0.5'
+                    ${
+                      location.pathname === path
+                        ? "bg-primary-500 text-white shadow-glow animate-pulse"
+                        : "text-card-foreground hover:text-white hover:bg-muted dark:hover:bg-secondary-700 hover:-translate-y-0.5"
                     }
                   `}
                 >
@@ -81,7 +85,7 @@ const Header = () => {
         </nav>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
