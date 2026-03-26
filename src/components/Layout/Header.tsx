@@ -16,11 +16,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo/Title */}
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-linear-to-br from-primary-500 to-accent-500 rounded-lg flex items-center justify-center hover-glow transition-all duration-300 hover:scale-110">
-              <span className="text-white font-bold text-lg animate-wiggle">
-                🎮
-              </span>
-            </div>
+            <div className="w-8 h-8 bg-linear-to-br from-primary-500 to-accent-500 rounded-lg flex items-center justify-center hover-glow transition-all duration-300 hover:scale-110"></div>
             <h1 className="text-xl sm:text-2xl font-bold text-gradient hover:scale-105 transition-transform duration-300">
               Juegos Clásicos
             </h1>

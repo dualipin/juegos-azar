@@ -7,10 +7,10 @@ const DarkModeToggle = () => {
       <input type="checkbox" className="theme-controller" value="light" />
 
       {/* sun icon */}
-      <SunIcon />
+      <SunIcon className="swap-off fill-current" />
 
       {/* moon icon */}
-      <MoonIcon />
+      <MoonIcon className="swap-on fill-current" />
     </label>
   );
 };
