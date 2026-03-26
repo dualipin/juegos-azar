@@ -93,3 +93,83 @@
     --depth: 1;
     --noise: 0;
 }
+
+/* =====================================================
+   3D Dice Component
+   ===================================================== */
+
+.dice-scene {
+    width: 100px;
+    height: 100px;
+    perspective: 500px;
+    perspective-origin: 50% 50%;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+.dice-cube {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform-origin: 50% 50% 0;
+    will-change: transform;
+}
+
+/* ── Base face ── */
+.dice-face {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    place-items: center;
+    padding: 11px;
+    box-sizing: border-box;
+    border-radius: 16px;
+    border: 2px solid rgba(0, 0, 0, 0.14);
+    box-shadow:
+        inset 3px 3px 7px rgba(255, 255, 255, 0.85),
+        inset -3px -3px 7px rgba(0, 0, 0, 0.13),
+        0 4px 14px rgba(0, 0, 0, 0.25),
+        0 1px 3px rgba(0, 0, 0, 0.18);
+    backface-visibility: visible;
+}
+
+/* ── Pip (dot) ── */
+.dice-pip {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 33% 33%, #555 0%, #111 65%);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* ── Face positions & individual gradients ── */
+.dice-face--front {
+    background: linear-gradient(140deg, #fafafa 0%, #e2e2e2 100%);
+    transform: translateZ(50px);
+}
+.dice-face--back {
+    background: linear-gradient(320deg, #f2f2f2 0%, #d8d8d8 100%);
+    transform: rotateY(180deg) translateZ(50px);
+}
+.dice-face--right {
+    background: linear-gradient(230deg, #f5f5f5 0%, #dcdcdc 100%);
+    transform: rotateY(90deg) translateZ(50px);
+}
+.dice-face--left {
+    background: linear-gradient(50deg, #f5f5f5 0%, #dcdcdc 100%);
+    transform: rotateY(-90deg) translateZ(50px);
+}
+.dice-face--top {
+    background: linear-gradient(180deg, #fbfbfb 0%, #e6e6e6 100%);
+    transform: rotateX(90deg) translateZ(50px);
+}
+.dice-face--bottom {
+    background: linear-gradient(0deg, #ebebeb 0%, #d2d2d2 100%);
+    transform: rotateX(-90deg) translateZ(50px);
+}
