@@ -69,7 +69,7 @@ const Home = () => {
         </p>
       </div>
 
-      <section className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 animate-fade-in animate-delay-500">
+      <section className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
         {games.map((game, index) => (
           <GameCard key={game.id} {...game} index={index} />
         ))}
