@@ -40,3 +40,56 @@
   --depth: 1;
   --noise: 0;
 }
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+
+  /* Bases: Invertimos a blancos limpios con un toque de azul para coherencia */
+  --color-base-100: oklch(98% 0.005 264.5); /* Fondo principal casi blanco */
+  --color-base-200: oklch(95% 0.01 264.5); /* Un gris muy suave */
+  --color-base-300: oklch(90% 0.015 264.5); /* Bordes y divisiones */
+  --color-base-content: oklch(
+    25% 0.03 264.5
+  ); /* Texto principal (contraste alto) */
+
+  /* Colores de marca: Mantenemos el matiz pero ajustamos croma/brillo para luz */
+  --color-primary: oklch(60% 0.22 27.325); /* Coral vibrante */
+  --color-primary-content: oklch(98% 0.01 27.325);
+
+  --color-secondary: oklch(65% 0.13 163.225); /* Verde esmeralda suave */
+  --color-secondary-content: oklch(20% 0.04 163.225);
+
+  --color-accent: oklch(55% 0.24 276.966); /* Púrpura profundo */
+  --color-accent-content: oklch(98% 0.01 276.966);
+
+  /* Neutros y estados */
+  --color-neutral: oklch(
+    30% 0.03 264.665
+  ); /* Gris oscuro para botones neutros */
+  --color-neutral-content: oklch(98% 0.002 247.839);
+
+  --color-info: oklch(65% 0.14 241.966);
+  --color-info-content: oklch(20% 0.04 241.966);
+
+  --color-success: oklch(70% 0.12 184.704);
+  --color-success-content: oklch(20% 0.04 184.704);
+
+  --color-warning: oklch(75% 0.18 41.116);
+  --color-warning-content: oklch(25% 0.05 41.116);
+
+  --color-error: oklch(65% 0.22 17.585);
+  --color-error-content: oklch(98% 0.01 17.585);
+
+  /* Mantenemos tus bordes y radios para consistencia visual */
+  --radius-selector: 0.5rem;
+  --radius-field: 1rem;
+  --radius-box: 2rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 2px;
+  --depth: 1;
+  --noise: 0;
+}
