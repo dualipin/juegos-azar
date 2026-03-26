@@ -10,7 +10,7 @@ const Header = () => {
   ];
 
   return (
-    <div className="navbar bg-base-100/30 shadow-sm max-w-7xl sticky top-2 mx-auto backdrop-blur-md">
+    <div className="navbar z-50 bg-base-100/30 shadow-sm max-w-4xl sticky top-2 mx-auto backdrop-blur-md">
       <div className="flex-1">
         <Link to="/" className="btn btn-ghost text-xl">
           Juegos Azar
@@ -26,7 +26,9 @@ const Header = () => {
               <Link to={path}>{label}</Link>
             </li>
           ))}
-          <DarkModeToggle />
+          <li className="ml-2 flex items-center justify-center">
+            <DarkModeToggle />
+          </li>
         </ul>
       </div>
     </div>
