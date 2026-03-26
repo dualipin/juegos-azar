@@ -2,6 +2,7 @@ import { useState } from "react";
 import { GameRandomizers } from "../../../utils/randomGenerators";
 import { DiceResult } from "../../../types";
 import DiceDisplay from "./DiceDisplay";
+import { Gamepad, ChevronRight, Lock, Smile } from "lucide-react";
 
 const DadosGame = () => {
   const [diceCount, setDiceCount] = useState<number>(1);
@@ -54,184 +55,194 @@ const DadosGame = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="text-center">
-        <h1 className="text-3xl font-bold text-gradient mb-2">
-          🎲 Generador de Dados
-        </h1>
-        <p className="text-muted-foreground">
-          Números verdaderamente aleatorios con animaciones espectaculares
-        </p>
+    <div>
+      <div className="card shadow-sm">
+        <div className="card-body text-center">
+          <h1 className="card-title">
+            <Smile className="inline-block mr-2" />
+            Generador de Dados
+          </h1>
+          <p className="opacity-60">
+            Números verdaderamente aleatorios con animaciones espectaculares
+          </p>
+        </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-6">
+      <div className="lg:flex lg:space-x-6">
         {/* Panel de control */}
-        <section className="lg:basis-1/3 card p-6">
-          <h2 className="text-xl font-bold text-center mb-6 text-card-foreground">
-            ⚙️ Configuración
-          </h2>
-          <div className="space-y-4">
-            <div>
-              <label
-                htmlFor="diceCount"
-                className="block text-sm font-medium mb-2"
-              >
-                Cantidad de dados (1-10):
-              </label>
-              <input
-                id="diceCount"
-                type="number"
-                min="1"
-                max="10"
-                value={diceCount}
-                onChange={(e) => setDiceCount(parseInt(e.target.value) || 1)}
-                className="input w-full"
-                placeholder="Dados a generar"
-              />
-            </div>
+        <section className="card lg:w-1/3">
+          <div className="card-body">
+            <h2 className="card-title text-center">
+              <Gamepad className="inline-block mr-2" />
+              Configuración
+            </h2>
 
-            {error && (
-              <p className="text-error-500 text-sm text-center bg-error-50 dark:bg-error-950 p-2 rounded-lg">
-                {error}
-              </p>
-            )}
+            <div className="space-y-4 mt-4">
+              <div className="form-control">
+                <label htmlFor="diceCount" className="label">
+                  <span className="label-text">Cantidad de dados (1-10):</span>
+                </label>
+                <input
+                  id="diceCount"
+                  type="number"
+                  min="1"
+                  max="10"
+                  value={diceCount}
+                  onChange={(e) => setDiceCount(parseInt(e.target.value) || 1)}
+                  className="input input-bordered w-full"
+                  placeholder="Dados a generar"
+                />
+              </div>
 
-            <div className="space-y-2">
-              <button
-                onClick={rollDice}
-                disabled={isRolling}
-                className={`btn-primary w-full py-3 text-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed ${
-                  isRolling ? "animate-pulse" : ""
-                }`}
-              >
-                {isRolling
-                  ? countdown > 0
-                    ? `🎲 ${countdown}... 🎲`
-                    : "🎲 ¡Rodando! 🎲"
-                  : "🎯 Tirar Dados"}
-              </button>
-
-              {results.length > 0 && (
-                <button onClick={clearResults} className="btn-secondary w-full">
-                  🗑️ Limpiar
-                </button>
+              {error && (
+                <div className="alert alert-error shadow-lg">
+                  <div>{error}</div>
+                </div>
               )}
-            </div>
-          </div>
 
-          <div className="mt-6 p-4 bg-primary-50 dark:bg-primary-950 rounded-xl border border-primary-200 dark:border-primary-800">
-            <h3 className="font-semibold text-primary-700 dark:text-primary-300 mb-2">
-              🔐 Números Verdaderamente Aleatorios
-            </h3>
-            <p className="text-sm text-primary-600 dark:text-primary-400">
-              Utiliza la Web Crypto API del navegador para generar números
-              criptográficamente seguros y verdaderamente aleatorios.
-            </p>
-          </div>
-        </section>
+              <div className="flex flex-col gap-2 mt-2">
+                <button
+                  onClick={rollDice}
+                  disabled={isRolling}
+                  className={`btn btn-primary w-full ${isRolling ? "loading" : ""}`}
+                >
+                  {isRolling ? (
+                    countdown > 0 ? (
+                      <>
+                        <ChevronRight className="inline-block mr-2" />
+                        {countdown}...
+                        <ChevronRight className="inline-block ml-2" />
+                      </>
+                    ) : (
+                      <>
+                        <ChevronRight className="inline-block mr-2" />
+                        ¡Rodando!
+                        <ChevronRight className="inline-block ml-2" />
+                      </>
+                    )
+                  ) : (
+                    <>
+                      <ChevronRight className="inline-block mr-2" />
+                      Tirar Dados
+                    </>
+                  )}
+                </button>
 
-        {/* Área de resultados */}
-        <section className="lg:basis-2/3">
-          <h2 className="text-2xl font-bold mb-6 text-card-foreground">
-            🎯 Resultados
-          </h2>
-
-          {isRolling && countdown > 0 && (
-            <div className="card p-8 text-center mb-6 bg-linear-to-br from-primary-500 to-accent-500 animate-slide-in-down">
-              <div className="text-6xl font-bold text-white animate-heartbeat mb-2">
-                {countdown}
-              </div>
-              <p className="text-white text-lg font-medium animate-wiggle">
-                ¡Preparando los dados!
-              </p>
-            </div>
-          )}
-
-          {results.length === 0 && !isRolling ? (
-            <div className="card p-8 text-center">
-              <div className="text-4xl mb-4">🎲</div>
-              <p className="text-muted-foreground">
-                Configura la cantidad de dados y presiona "Tirar Dados" para
-                comenzar
-              </p>
-            </div>
-          ) : (
-            <div className="space-y-4 animate-fade-in">
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                {results.map((result, index) => (
-                  <div
-                    key={result.id}
-                    className={showResults ? "animate-bounce-in" : ""}
-                    style={{
-                      animationDelay: showResults ? `${index * 150}ms` : "0ms",
-                    }}
+                {results.length > 0 && (
+                  <button
+                    onClick={clearResults}
+                    className="btn btn-outline w-full"
                   >
-                    <DiceDisplay
-                      value={result.value}
-                      index={index + 1}
-                      isAnimating={isRolling}
-                      showResult={showResults}
-                    />
-                  </div>
-                ))}
+                    <ChevronRight className="inline-block mr-2" />
+                    Limpiar
+                  </button>
+                )}
               </div>
 
-              <div className="card p-6 animate-slide-in-up">
-                <h3 className="font-semibold mb-4 text-card-foreground">
-                  📊 Estadísticas
-                </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                  <div
-                    className="text-center p-3 bg-success-50 dark:bg-success-950 rounded-lg hover-lift animate-fade-in"
-                    style={{ animationDelay: "0.1s" }}
-                  >
-                    <div className="text-2xl font-bold text-success-600 dark:text-success-400">
-                      {results.length}
+              <div className="mt-6">
+                <div className="alert alert-info shadow-lg">
+                  <div>
+                    <div className="font-bold">
+                      <Lock className="inline-block mr-2" />
+                      Números Verdaderamente Aleatorios
                     </div>
-                    <div className="text-xs text-success-700 dark:text-success-300">
-                      Total dados
-                    </div>
-                  </div>
-                  <div
-                    className="text-center p-3 bg-primary-50 dark:bg-primary-950 rounded-lg hover-lift animate-fade-in"
-                    style={{ animationDelay: "0.2s" }}
-                  >
-                    <div className="text-2xl font-bold text-primary-600 dark:text-primary-400">
-                      {results.reduce((sum, r) => sum + r.value, 0)}
-                    </div>
-                    <div className="text-xs text-primary-700 dark:text-primary-300">
-                      Suma total
-                    </div>
-                  </div>
-                  <div
-                    className="text-center p-3 bg-accent-50 dark:bg-accent-950 rounded-lg hover-lift animate-fade-in"
-                    style={{ animationDelay: "0.3s" }}
-                  >
-                    <div className="text-2xl font-bold text-accent-600 dark:text-accent-400">
-                      {(
-                        results.reduce((sum, r) => sum + r.value, 0) /
-                        results.length
-                      ).toFixed(2)}
-                    </div>
-                    <div className="text-xs text-accent-700 dark:text-accent-300">
-                      Promedio
-                    </div>
-                  </div>
-                  <div
-                    className="text-center p-3 bg-warning-50 dark:bg-warning-950 rounded-lg hover-lift animate-fade-in"
-                    style={{ animationDelay: "0.4s" }}
-                  >
-                    <div className="text-2xl font-bold text-warning-600 dark:text-warning-400">
-                      {Math.max(...results.map((r) => r.value))}
-                    </div>
-                    <div className="text-xs text-warning-700 dark:text-warning-300">
-                      Máximo
+                    <div className="text-sm">
+                      Utiliza la Web Crypto API del navegador para generar
+                      números criptográficamente seguros y verdaderamente
+                      aleatorios.
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          )}
+          </div>
+        </section>
+
+        {/* Área de resultados */}
+        <section className="card lg:w-2/3">
+          <div className="card-body">
+            <h2 className="card-title">
+              <Gamepad className="inline-block mr-2" />
+              Resultados
+            </h2>
+
+            {isRolling && countdown > 0 && (
+              <div className="card bg-primary text-primary-content mb-4">
+                <div className="card-body text-center">
+                  <div className="text-6xl font-bold">{countdown}</div>
+                  <p>¡Preparando los dados!</p>
+                </div>
+              </div>
+            )}
+
+            {results.length === 0 && !isRolling ? (
+              <div className="card">
+                <div className="card-body text-center">
+                  <div className="text-4xl mb-4">
+                    <Smile className="inline-block" />
+                  </div>
+                  <p>
+                    Configura la cantidad de dados y presiona "Tirar Dados" para
+                    comenzar
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <div className="flex flex-wrap gap-4">
+                  {results.map((result, index) => (
+                    <div
+                      key={result.id}
+                      className={showResults ? "animate-bounce-in" : ""}
+                      style={{
+                        animationDelay: showResults
+                          ? `${index * 150}ms`
+                          : "0ms",
+                      }}
+                    >
+                      <DiceDisplay
+                        value={result.value}
+                        index={index + 1}
+                        isAnimating={isRolling}
+                        showResult={showResults}
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                <div className="stats shadow">
+                  <div className="stat">
+                    <div className="stat-value">{results.length}</div>
+                    <div className="stat-desc">Total dados</div>
+                  </div>
+
+                  <div className="stat">
+                    <div className="stat-value">
+                      {results.reduce((sum, r) => sum + r.value, 0)}
+                    </div>
+                    <div className="stat-desc">Suma total</div>
+                  </div>
+
+                  <div className="stat">
+                    <div className="stat-value">
+                      {(
+                        results.reduce((sum, r) => sum + r.value, 0) /
+                        results.length
+                      ).toFixed(2)}
+                    </div>
+                    <div className="stat-desc">Promedio</div>
+                  </div>
+
+                  <div className="stat">
+                    <div className="stat-value">
+                      {Math.max(...results.map((r) => r.value))}
+                    </div>
+                    <div className="stat-desc">Máximo</div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </section>
       </div>
     </div>
